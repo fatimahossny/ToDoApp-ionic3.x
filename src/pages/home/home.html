@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{selectedCategoryName}}</ion-title>
+     <ion-buttons end>
+    <button ion-button icon-only (click)="deleteTasks()" [hidden]="!deleteMode" >
+      <ion-icon name="trash"></ion-icon>
+    </button>
+    <button ion-button  (click)="moveTasks()" [hidden]="!moveMode" >
+      Move
+    </button>
+    <div [hidden]="deleteMode || moveMode">
+      <button ion-button icon-only (click)=" presentMorePopover($event)">
+          <ion-icon name="more"></ion-icon>
+      </button>
+    </div>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+   <ion-fab right bottom [hidden]="deleteMode || moveMode">
+     <button ion-fab mini (click)="addTask()"><ion-icon name="add"></ion-icon></button>
+   </ion-fab>
+  <ion-list [hidden]="deleteMode || moveMode" inset>
+    <ion-item-sliding *ngFor="let toDo of tasksList;let i = index" (click)= "viewTask(i)">
+    <ion-item>
+    <h2> {{toDo.title}}</h2>
+    <h5>{{toDo.createdDate | date:'yyyy-MM-dd HH:mm:ss'}}</h5>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button icon-only (click)="deleteTask(i)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <!--this is for move and delete state-->
+  <div [hidden]="!(moveMode || deleteMode)">
+    <ion-item-divider style="width:100%;" full>
+    <ion-checkbox style="border-width: 0px;" [(ngModel)]="selectAllOption" (ionChange)="selectAllCheckBox()" full></ion-checkbox>
+     <ion-label style="border-bottom-width:0px" full>Select All</ion-label>    
+     </ion-item-divider>
+    <ion-list   inset>
+    <ion-item *ngFor="let toDo of tasksList;let i = index">
+     <ion-checkbox [(ngModel)]="checkArray[i]"></ion-checkbox>
+     <ion-label>{{toDo.title}}</ion-label>
+    </ion-item>
+  </ion-list>
+  </div>
+
+  
+</ion-content>

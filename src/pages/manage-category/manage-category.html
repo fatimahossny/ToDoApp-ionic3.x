@@ -1,0 +1,39 @@
+<!--
+  Generated template for the ManageCategoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--hideBackButton="true"-->
+<ion-header>
+
+  <ion-navbar color="primary" > 
+    <ion-title>Manage  Category</ion-title>
+     <ion-buttons end>
+       <button ion-button icon-only (click)="addCategory()" >
+        <ion-icon name="add"></ion-icon>
+      </button>
+     </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <ion-list>
+      <ion-item-sliding *ngFor="let p of pages;let i =index" >
+         <ion-item >
+        {{p.title}}
+         </ion-item>
+         <ion-item-options side="right">
+           <button ion-button icon-only (click)="editCategory(i)"  id="btn-create">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="deleteCategory(i)" >
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+</ion-content>

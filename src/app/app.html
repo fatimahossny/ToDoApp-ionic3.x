@@ -1,0 +1,25 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar color="primary" >
+      <ion-title>Menu</ion-title>
+       <ion-buttons end>
+        <button ion-button icon-only (click)="addCategory()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+       </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages;let i =index" (click)="openPage(p,i)">
+        {{p.title}}<span style="float:right;">({{p.tasksList.length}})</span>
+      </button>
+    </ion-list>
+  </ion-content>
+<ion-footer >
+  <button menuClose ion-item color="light" style="text-align:center;" (click)="getCatOptions()"> Manage Categories</button>
+</ion-footer>
+</ion-menu>
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

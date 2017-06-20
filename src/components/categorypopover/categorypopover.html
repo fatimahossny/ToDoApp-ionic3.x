@@ -1,0 +1,11 @@
+<div>
+  <ion-item-divider color="light" color="primary"> <h3>Move to Category
+     <ion-icon name="checkmark" (click)="close()" id='btnsave' outline >SAVE</ion-icon></h3>
+  </ion-item-divider>
+  <ion-list radio-group [(ngModel)] = "newIndex">
+   <ion-item *ngFor="let category of categories;let i = index"  >
+    <ion-label>{{category.title}} </ion-label>
+    <ion-radio [value]= "i" ></ion-radio>
+  </ion-item>
+  </ion-list>
+</div>
